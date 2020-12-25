@@ -70,4 +70,16 @@ int main(){
         }
         std::clog << '\n';
     }
+    {
+        const std::vector<std::pair<int, int>> number_pair = { {1, 4}, {2, 3}, {3, 9} };
+        const auto numbers = ranges::views::concat(number_pair | ranges::views::keys, number_pair |
+                                                    ranges::views::values) | ranges::to<std::vector<int>>() |
+                                                    ranges::actions::sort | ranges::actions::unique;
+        std::clog << "with sort+unique\n\t";
+        for (const auto number : numbers)
+        {
+            std::clog << number << ' ';
+        }
+        std::clog << '\n';
+    }
 }
